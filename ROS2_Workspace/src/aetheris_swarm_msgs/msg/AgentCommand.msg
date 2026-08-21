@@ -1,0 +1,4 @@
+string agent_id
+geometry_msgs/Point target_position
+geometry_msgs/Quaternion target_orientation
+string mode

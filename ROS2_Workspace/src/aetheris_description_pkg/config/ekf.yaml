@@ -1,0 +1,32 @@
+# /ros2_ws/src/aetheris_description_pkg/config/ekf.yaml
+ekf_node:
+  ros__parameters:
+    use_sim_time: false
+    frequency: 30.0
+    sensor_timeout: 0.1
+    two_d_mode: true          # true for planar robots; set false for full 3D
+    print_diagnostics: true
+    publish_tf: true          # important -> ekf will broadcast odom -> base_link
+    publish_acceleration: false
+
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom
+
+    # INPUT SOURCES - change topic names later to your real topics
+    odom0: /demo/odom         # Example odometry topic (nav_msgs/Odometry)
+    odom0_config: [true, true, false,
+                   false, false, true,
+                   true, true, false,
+                   false, false, true,
+                   false, false, false]
+    odom0_queue_size: 2
+
+    imu0: /demo/imu           # Example IMU topic (sensor_msgs/Imu)
+    imu0_config: [false, false, false,
+                  true, true, true,
+                  false, false, false,
+                  false, false, true,
+                  false, false, false]
+    imu0_queue_size: 5

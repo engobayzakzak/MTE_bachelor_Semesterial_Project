@@ -1,0 +1,18 @@
+sensors:
+  # Prime (theoretical cage): these will remain protected
+  gnss_link:
+    protected: true
+    description: "Prime GNSS (inside Faraday bay)"
+  hyperspectral_link:
+    protected: true
+    description: "Prime hyperspectral payload (protected)"
+
+  # Prime sensors that are *not* considered protected (example)
+  gimbal_camera:
+    protected: false
+
+  # Sentinel sensors (examples) - not protected
+  lidar_link:
+    protected: false
+  rgb_camera_link:
+    protected: false

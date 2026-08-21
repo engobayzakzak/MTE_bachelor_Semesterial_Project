@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="aetheris_prime">
+<xacro:property name="mainframe_mass" value="2.5"/>
+<xacro:property name="gimbal_base_mass" value="0.3"/>
+<xacro:property name="gimbal_camera_mass" value="0.2"/>
+<xacro:property name="lidar_mass" value="0.4"/>
+<xacro:property name="gnss_module_mass" value=""/>
+<xacro:property name="hyperspectral_sensor_mass" value=""/>
+<xacro:property name="propeller_mass" value=""/>
+<xacro:property name="scale" value="1.0"/>
+
+
+
+  <!-- Mainframe -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="${mainframe_mass}"/>
+      <inertia ixx="0.05" iyy="0.06" izz="0.07" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/visual/prime_visualSTL/Prime_Mainframe.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/collision/prime_collisionSTL/Prime_Mainframe_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Gimbal Base -->
+  <link name="gimbal_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="gimbal_base_mass"/>
+      <inertia ixx="0.002" iyy="0.003" izz="0.004" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/visual/prime_visualSTL/Gimbal_Camera.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/collision/prime_collisionSTL/Gimbal_Camera_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_gimbal" type="fixed">
+    <parent link="base_link"/>
+    <child link="gimbal_link"/>
+    <origin xyz="2.59761 0 -0.45744" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Gimbal Camera -->
+  <link name="gimbal_camera">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="gimbal_camera_mass"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.002" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/visual/prime_visualSTL/Gimbal_Camera.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/collision/prime_collisionSTL/Gimbal_Camera_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="gimbal_to_camera" type="fixed">
+    <parent link="gimbal_link"/>
+    <child link="gimbal_camera"/>
+    <origin xyz="2.61136 0.00004 -0.71337" rpy="0 0 0"/>
+  </joint>
+
+  <!-- LiDAR -->
+  <link name="lidar_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="lidar_mass"/>
+      <inertia ixx="0.002" iyy="0.002" izz="0.003" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/visual/prime_visualSTL/LiDAR.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/collision/prime_collisionSTL/LiDAR_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_lidar" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+    <origin xyz="-0.13862 -0.00176 -0.1943" rpy="0 0 0"/>
+  </joint>
+
+  <!-- GNSS Module -->
+  <link name="gnss_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="gnss_module_mass"/>
+      <inertia ixx="0.0005" iyy="0.0005" izz="0.001" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/visual/prime_visualSTL/GNSS_Module.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/collision/prime_collisionSTL/GNSS_Module_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_gnss" type="fixed">
+    <parent link="base_link"/>
+    <child link="gnss_link"/>
+    <origin xyz="0.38207 0 0.6371" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Hyperspectral Sensor -->
+  <link name="hyperspectral_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="hyperspectral_sensor_mass"/>
+      <inertia ixx="0.003" iyy="0.003" izz="0.004" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/visual/prime_visualSTL/Hyperspectral_Sensor.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/collision/prime_collisionSTL/Hyperspectral_Sensor_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_hyperspectral" type="fixed">
+    <parent link="base_link"/>
+    <child link="hyperspectral_link"/>
+    <origin xyz="-1.11855 -0.11134 -0.1863" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Propeller -->
+  <link name="propeller_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="propeller_mass"/>
+      <inertia ixx="0.0001" iyy="0.0001" izz="0.0002" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/visual/prime_visualSTL/Propeller.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/collision/prime_collisionSTL/Propeller_collision.stl" scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_propeller" type="fixed">
+    <parent link="base_link"/>
+    <child link="propeller_link"/>
+    <origin xyz="-3.91319 0 0.03031" rpy="0 0 0"/>
+  </joint>
+
+</robot>
+

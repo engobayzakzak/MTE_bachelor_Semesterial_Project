@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="aetheris_sentinel">
+<xacro:property name="mainframe_mass" value="2.0"/>
+<xacro:property name="ultrasonic_mass" value="0.3"/>
+<xacro:property name="rgb_camera_mass" value="0.2"/>
+<xacro:property name="lidar_mass" value="0.4"/>
+<xacro:property name="telemetry_module_mass" value="0.5"/>
+<xacro:property name="antenna_mass" value="0.5"/>
+<xacro:property name="thermal_camera_mass" value="0.5"/>
+<xacro:property name="front_holding_plate_mass" value="0.5"/>
+<xacro:property name="linear_actuator_mass" value="0.5"/>
+<xacro:property name="gripper_mass" value="0.5"/>
+<xacro:property name="scale" value="1.0"/>
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <inertial>
+      <mass value="mainframe_mass"/> <!-- approximate mass in kg -->
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.45" iyz="0.0" izz="0.05"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/Sentinel.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/Sentinel_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 1O JSN -->
+  <link name="1O_JSN_SR04T">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_1O_JSN" type="fixed">
+    <parent link="base_link"/>
+    <child link="1O_JSN_SR04T"/>
+      <mass value="ultrasonic_mass"/>
+    <origin xyz="0.09076 0.06048 0.00057" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 3O JSN -->
+  <link name="3O_JSN_SR04T">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_3O_JSN" type="fixed">
+    <parent link="base_link"/>
+    <child link="3O_JSN_SR04T"/>
+      <mass value="ultrasonic_mass"/>
+    <origin xyz="-0.00458 0.11737 0.00057" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 5O JSN -->
+  <link name="5O_JSN_SR04T">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_5O_JSN" type="fixed">
+    <parent link="base_link"/>
+    <child link="5O_JSN_SR04T"/>
+      <mass value="ultrasonic_mass"/>
+    <origin xyz="-0.10021 0.06469 0.00057" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 7O JSN -->
+  <link name="7O_JSN_SR04T">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_7O_JSN" type="fixed">
+    <parent link="base_link"/>
+    <child link="7O_JSN_SR04T"/>
+      <mass value="ultrasonic_mass"/>
+    <origin xyz="-0.1042 -0.04492 0.00057" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 9O JSN -->
+  <link name="9O_JSN_SR04T">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_9O_JSN" type="fixed">
+    <parent link="base_link"/>
+    <child link="9O_JSN_SR04T"/>
+      <mass value="ultrasonic_mass"/>
+    <origin xyz="0.00761 -0.10153 0.00057" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 11O JSN -->
+  <link name="11O_JSN_SR04T">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/JSN-SR04T-V2.0v1_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_11O_JSN" type="fixed">
+    <parent link="base_link"/>
+    <child link="11O_JSN_SR04T"/>
+      <mass value="ultrasonic_mass"/>
+    <origin xyz="0.08803 -0.0494 0.00057" rpy="0 0 0"/>
+  </joint>
+
+  <!-- LiDAR -->
+  <link name="lidar_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/TF_mini_Plus_A02.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/TF_mini_Plus_A02_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_lidar" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+      <mass value="lidar_mass"/>
+    <origin xyz="0.09392 -0.00418 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- RGB Camera -->
+  <link name="rgb_camera_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/RGB_Camera.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/RGB_Camera_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_rgb_camera" type="fixed">
+    <parent link="base_link"/>
+    <child link="rgb_camera_link"/>
+      <mass value="rgb_camera_mass"/>
+    <origin xyz="0.09464 0.01198 -0.0045" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Telemetry module -->
+  <link name="telemetry_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/Telemetry_Holybro_Assembly.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/Telemetry_Holybro_Assembly_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_telemetry" type="fixed">
+    <parent link="base_link"/>
+    <child link="telemetry_link"/>
+      <mass value="telemetry_module_mass"/>
+    <origin xyz="0 -0.06195 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Antenna -->
+  <link name="antenna_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/Antenna.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/Antenna_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_antenna" type="fixed">
+    <parent link="base_link"/>
+    <child link="antenna_link"/>
+      <mass value="antenna_mass"/>
+    <origin xyz="-0.01515 0.09384 -0.01133" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Thermal Camera -->
+  <link name="thermal_camera_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/InfiRay_P2_Pro.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/InfiRay_P2_Pro_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_thermal_camera" type="fixed">
+    <parent link="base_link"/>
+    <child link="thermal_camera_link"/>
+      <mass value="thermal_camera_mass"/>
+    <origin xyz="0.09392 -0.00418 -0.0091" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Front holding plate -->
+  <link name="front_plate_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/Logo_plate.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/Logo_plate_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_front_plate" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_plate_link"/>
+      <mass value="front_holding_plate_mass"/>
+    <origin xyz="0.09392 -0.00418 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Linear actuator -->
+  <link name="actuator_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/Linear_Actuator.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/Linear_Actuator_collision.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_actuator" type="fixed">
+    <parent link="base_link"/>
+    <child link="actuator_link"/>
+      <mass value="linear_actuator_mass"/>
+    <origin xyz="0 0.01575 -0.03534" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Gripper -->
+  <link name="gripper_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/visual/sentinel_visualSTL/Gripper.stl"  scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://aetheris_description_pkg/meshes/collision/sentinel_collisionSTL/Gripper_collision.stl" scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="actuator_to_gripper" type="fixed">
+    <parent link="actuator_link"/>
+    <child link="gripper_link"/>
+      <mass value="gripper_mass"/>
+    <origin xyz="0 0 -0.00223" rpy="0 0 0"/>
+  </joint>
+
+</robot>

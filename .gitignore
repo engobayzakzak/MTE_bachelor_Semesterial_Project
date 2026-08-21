@@ -1,0 +1,6 @@
+*.STEP
+*.step
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.vscode/

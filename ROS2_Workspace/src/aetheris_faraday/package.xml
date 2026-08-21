@@ -1,0 +1,18 @@
+cat > package.xml <<'EOF'
+<?xml version="1.0"?>
+<package format="3">
+  <name>aetheris_faraday</name>
+  <version>0.0.1</version>
+  <description>Faraday protection manager (logical indicator for protected sensors)</description>
+
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+
+</package>
+EOF
